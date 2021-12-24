@@ -10,8 +10,6 @@ data_pack:
   pack_format: 7
 
 require:
-  - mecha.contrib.implicit_execute
-  - mecha.contrib.nesting
   - mecha.contrib.scripting
   - lectern.contrib.yaml_to_json
 pipeline:
@@ -29,4 +27,4 @@ meta:
     keep_comments: true
   lectern:
     load:
-      - test.md
+      - lectern/*.mcfunction
