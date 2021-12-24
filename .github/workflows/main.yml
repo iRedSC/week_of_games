@@ -1,7 +1,7 @@
 on: push
-name: 🚀 Deploy website on push
+name: PUSH TO SERVER AND RELOAD
 jobs:
-  web-deploy:
+  deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
@@ -17,3 +17,16 @@ jobs:
         server-dir: week_of_games/datapacks/
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
+  
+  rcon_test:
+    needs: deploy
+    runs-on: ubuntu-latest
+    name: RCON Test
+    steps:
+      - name: RCON Connection
+        uses: Plagiatus/RCON-Action@v0.1
+        with:
+          server: ${{ secrets.rcon_server }}
+          port: ${{ secrets.rcon_port }}
+          password: ${{ secrets.rcon_password }}
+          commands: '["reload"]'
